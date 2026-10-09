@@ -4,44 +4,35 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
+import androidx.lifecycle.ViewModelProvider
+import com.ipeksavas.pinknote.data.local.PinkNoteDatabase
+import com.ipeksavas.pinknote.data.repository.NoteRepository
+import com.ipeksavas.pinknote.presentation.notes.NoteViewModel
+import com.ipeksavas.pinknote.presentation.notes.NotesViewModelFactory
 import com.ipeksavas.pinknote.ui.theme.PinkNoteTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        val db = PinkNoteDatabase.getDatabase(applicationContext)
+        //singleton dbyi oluşturuyoruz ve db instance'ını alıyoruz. Bu sayede db ile etkileşim kurabiliriz.
+        
+        val dao = db.noteDao()
+        //dao ile etkileşim kurabiliriz. Dao, db ile etkileşim kurmamızı sağlayan bir arayüzdür.
+        
+        val repo = NoteRepository(dao)
+        //dao'yu repository'ye enjekte ediyoruz (Manuel DI'ın ilk adımı)
+        
+        val noteViewModelFactory = NotesViewModelFactory(repo)
+        //repository'yi ViewModelFactory'e enjekte ediyoruz (Manuel DI'ın ikinci adımı)
+        
+        val noteViewModel = ViewModelProvider(this, noteViewModelFactory)[NoteViewModel::class.java]
+        //Factory aracılığıyla ViewModel'ımızı ayağa kaldırıyoruz
+        
         enableEdgeToEdge()
         setContent {
             PinkNoteTheme {
-                Scaffold(modifier = Modifier.fillMaxSize()) { innerPadding ->
-                    Greeting(
-                        name = "Android",
-                        modifier = Modifier.padding(innerPadding)
-                    )
-                }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    PinkNoteTheme {
-        Greeting("Android")
     }
 }
