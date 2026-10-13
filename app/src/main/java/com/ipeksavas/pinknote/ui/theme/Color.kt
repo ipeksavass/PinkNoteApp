@@ -9,3 +9,6 @@ val Pink80 = Color(0xFFEFB8C8)
 val Purple40 = Color(0xFF805EEA)
 val PurpleGrey40 = Color(0xFFFF4FFC)
 val Pink40 = Color(0xFFE73ECB)
+
+val LilacContainer = Color(0xFFD6C0F0)
+val OnLilacContainer = Color(0xFF3C2055)

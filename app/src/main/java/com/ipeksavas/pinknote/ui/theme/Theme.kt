@@ -26,7 +26,10 @@ private val LightColorScheme = lightColorScheme(
     background = Color(0xD7F56FC0),
     surface = Color(0xD7F56FC0),
     onPrimary = Color.White,
-    onBackground = Color.White
+    onBackground = Color.White,
+    // FAB için
+    primaryContainer = LilacContainer,
+    onPrimaryContainer = OnLilacContainer
     
     /* Other default colors to override
     background = Color(0xFFFFFBFE),
