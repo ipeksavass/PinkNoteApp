@@ -9,16 +9,18 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
+import androidx.compose.material.icons.filled.Add
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Surface
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
@@ -26,17 +28,32 @@ import com.ipeksavas.pinknote.data.entity.NoteEntity
 
 @Composable
 fun NoteScreen(
-    viewModel: NoteViewModel
+    viewModel: NoteViewModel,
+    onAddNoteClick: () -> Unit
 ){
     val notes by viewModel.notes.collectAsStateWithLifecycle()
     //ViewModel'daki notes akışını Compose state'ine dönüştürüyorum.
     
-    Surface(
-        modifier = Modifier.fillMaxSize(),
-        color = Color(0xD7F56FC0)
-    ){
+    Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
+        floatingActionButton = {
+            FloatingActionButton(
+                onClick = onAddNoteClick,
+                containerColor = MaterialTheme.colorScheme.primaryContainer,
+                contentColor = MaterialTheme.colorScheme.onPrimaryContainer
+            ){
+                Icon(
+                    imageVector = androidx.compose.material.icons.Icons.Default.Add,
+                    contentDescription = "Add New Note"
+                )
+            }
+        }
+    ){ innerPadding ->
         Column(
-            modifier = Modifier.fillMaxSize().padding(16.dp)
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+                .padding(6.dp)
         ){
             
             Spacer(modifier =  Modifier.height(16.dp))

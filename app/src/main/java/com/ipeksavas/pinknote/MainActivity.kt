@@ -33,7 +33,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PinkNoteTheme{
-                NoteScreen(viewModel= noteViewModel)
+                NoteScreen(viewModel= noteViewModel,
+                    onAddNoteClick = {
+                        //FAB tıklandığında yapılacak işlemler
+                    }
+                )
             }
         }
     }
