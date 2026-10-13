@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.ViewModelProvider
 import com.ipeksavas.pinknote.data.local.PinkNoteDatabase
 import com.ipeksavas.pinknote.data.repository.NoteRepository
+import com.ipeksavas.pinknote.presentation.notes.NoteScreen
 import com.ipeksavas.pinknote.presentation.notes.NoteViewModel
 import com.ipeksavas.pinknote.presentation.notes.NotesViewModelFactory
 import com.ipeksavas.pinknote.ui.theme.PinkNoteTheme
@@ -31,7 +32,8 @@ class MainActivity : ComponentActivity() {
         
         enableEdgeToEdge()
         setContent {
-            PinkNoteTheme {
+            PinkNoteTheme{
+                NoteScreen(viewModel= noteViewModel)
             }
         }
     }
