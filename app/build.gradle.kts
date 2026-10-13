@@ -64,6 +64,7 @@ dependencies {
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx) // Coroutine desteği için (önerilir)
     ksp(libs.androidx.room.compiler)       // Annotation processing için KSP
-    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.11.0")
     
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.8.7")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
 }
