@@ -5,9 +5,10 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.compose.rememberNavController
 import com.ipeksavas.pinknote.data.local.PinkNoteDatabase
+import com.ipeksavas.pinknote.data.navigation.PinkNoteNavGraph
 import com.ipeksavas.pinknote.data.repository.NoteRepository
-import com.ipeksavas.pinknote.presentation.notes.NoteScreen
 import com.ipeksavas.pinknote.presentation.notes.NoteViewModel
 import com.ipeksavas.pinknote.presentation.notes.NotesViewModelFactory
 import com.ipeksavas.pinknote.ui.theme.PinkNoteTheme
@@ -33,10 +34,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             PinkNoteTheme{
-                NoteScreen(viewModel= noteViewModel,
-                    onAddNoteClick = {
-                        //FAB tıklandığında yapılacak işlemler
-                    }
+                val navController = rememberNavController()
+                PinkNoteNavGraph(
+                    navController = navController,
+                    noteViewModel = noteViewModel
                 )
             }
         }
