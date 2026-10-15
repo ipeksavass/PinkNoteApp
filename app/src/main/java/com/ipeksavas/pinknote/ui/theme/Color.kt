@@ -12,3 +12,4 @@ val Pink40 = Color(0xFFE73ECB)
 
 val LilacContainer = Color(0xFFD6C0F0)
 val OnLilacContainer = Color(0xFF3C2055)
+val NavyText = Color(0xFF1B3B6F)
