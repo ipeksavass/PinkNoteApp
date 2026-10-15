@@ -5,6 +5,7 @@ import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
+import androidx.room.Update
 import com.ipeksavas.pinknote.data.entity.NoteEntity
 import kotlinx.coroutines.flow.Flow
 
@@ -19,5 +20,8 @@ interface NoteDao {
     
     @Delete
     suspend fun deleteNote(entity: NoteEntity)
+    
+    @Update
+    suspend fun updateNote(entity: NoteEntity)
     
 }

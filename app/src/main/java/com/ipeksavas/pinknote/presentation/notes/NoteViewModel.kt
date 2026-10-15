@@ -46,4 +46,10 @@ class NoteViewModel(
         }
     }
     
+    fun updateNote(note: NoteEntity){
+        viewModelScope.launch{
+            noteRepository.updateNote(note)
+        }
+    }
+    
 }
