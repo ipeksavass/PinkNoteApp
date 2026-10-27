@@ -3,7 +3,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.android.ksplibs) // KSP plugin
-    
+    alias(libs.plugins.dagger.hilt.android) // Hilt
 }
 
 android {
@@ -69,4 +69,8 @@ dependencies {
     implementation("androidx.lifecycle:lifecycle-runtime-compose:2.8.7")
     
     implementation("androidx.navigation:navigation-compose:2.8.5")
+    
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
 }
